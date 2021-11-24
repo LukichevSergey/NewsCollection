@@ -10,7 +10,7 @@ import Foundation
 
 // MARK: CollectionPresenterToRouterProtocol (Presenter -> Router)
 protocol CollectionPresenterToRouterProtocol: AnyObject {
-
+    func navigateToItemViewController(item: News)
 }
 
 class CollectionRouter {
@@ -21,5 +21,7 @@ class CollectionRouter {
 
 // MARK: CollectionPresenterToRouterProtocol
 extension CollectionRouter: CollectionPresenterToRouterProtocol {
-    
+    func navigateToItemViewController(item: News) {
+        view.pushView(view: CollectionItemConfigurator().configure(item: item))
+    }
 }

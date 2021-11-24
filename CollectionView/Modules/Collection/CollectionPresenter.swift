@@ -11,11 +11,12 @@ import Foundation
 // MARK: CollectionViewToPresenterProtocol (View -> Presenter)
 protocol CollectionViewToPresenterProtocol: AnyObject {
 	func viewDidLoad()
+    func clickOnItem(indexPath: IndexPath)
 }
 
 // MARK: CollectionInteractorToPresenterProtocol (Interactor -> Presenter)
 protocol CollectionInteractorToPresenterProtocol: AnyObject {
-
+    func didFinishFetchDataFromApi(data: [News])
 }
 
 class CollectionPresenter {
@@ -28,16 +29,23 @@ class CollectionPresenter {
 
 // MARK: CollectionViewToPresenterProtocol
 extension CollectionPresenter: CollectionViewToPresenterProtocol {
+    
     func viewDidLoad() {
-        updateCollection()
+        interactor.fetchDataFromApi()
+    }
+    
+    func clickOnItem(indexPath: IndexPath) {
+        print(indexPath)
+        
+        router.navigateToItemViewController(item: interactor.getItemForIndexPath(indexPath: indexPath))
     }
 }
 
 // MARK: CollectionInteractorToPresenterProtocol
 extension CollectionPresenter: CollectionInteractorToPresenterProtocol {
-    private func updateCollection() {
+    func didFinishFetchDataFromApi(data: [News]) {
         DispatchQueue.main.async {
-            self.view.updateCollection(with: self.interactor.data)
+            self.view.updateCollection(with: data)
         }
     }
 }

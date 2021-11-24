@@ -11,7 +11,7 @@ import SnapKit
 
 // MARK: CollectionPresenterToViewProtocol (Presenter -> View)
 protocol CollectionPresenterToViewProtocol: AnyObject {
-    func updateCollection(with data: [Cell])
+    func updateCollection(with data: [News])
 }
 
 // MARK: CollectionRouterToViewProtocol (Router -> View)
@@ -37,7 +37,7 @@ class CollectionViewController: UIViewController {
         return collectionView
     }()
     
-    private lazy var dataSource = UICollectionViewDiffableDataSource<Section, Cell>(collectionView: collectionView) { collectionView, indexPath, item in
+    private lazy var dataSource = UICollectionViewDiffableDataSource<Section, News>(collectionView: collectionView) { collectionView, indexPath, item in
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.reuseIdentifier, for: indexPath) as? CollectionViewCell else {
             return UICollectionViewCell(frame: .zero)
         }
@@ -71,17 +71,18 @@ class CollectionViewController: UIViewController {
     }
 
     private func configureUI() {
+        self.view.backgroundColor = .white
         self.view.addSubview(collectionView)
         collectionView.snp.makeConstraints { make in
-            make.left.right.top.bottom.equalToSuperview()
+            make.left.right.top.bottom.equalTo(view.safeAreaLayoutGuide)
         }
     }
 }
 
 // MARK: CollectionPresenterToViewProtocol 
 extension CollectionViewController: CollectionPresenterToViewProtocol{
-    func updateCollection(with data: [Cell]) {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, Cell>()
+    func updateCollection(with data: [News]) {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, News>()
         snapshot.appendSections(Section.allCases)
         snapshot.appendItems(data)
         dataSource.apply(snapshot, animatingDifferences: false, completion: nil)
@@ -100,7 +101,9 @@ extension CollectionViewController: CollectionRouterToViewProtocol{
 }
 
 extension CollectionViewController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        presenter.clickOnItem(indexPath: indexPath)
+    }
 }
 
 extension CollectionViewController: UICollectionViewDelegateFlowLayout {
@@ -109,7 +112,8 @@ extension CollectionViewController: UICollectionViewDelegateFlowLayout {
         let paddingWidth = 20 * (itemsPerRow + 1)
         let availableWidth = collectionView.frame.width - paddingWidth
         let widthPerItem = availableWidth / itemsPerRow
+        let hightPerItem = widthPerItem / 100 * 56.25
         
-        return CGSize(width: widthPerItem, height: 150)
+        return CGSize(width: widthPerItem, height: hightPerItem)
     }
 }

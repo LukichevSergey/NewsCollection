@@ -10,28 +10,34 @@ import Foundation
 
 // MARK: CollectionPresenterToInteractorProtocol (Presenter -> Interactor)
 protocol CollectionPresenterToInteractorProtocol: AnyObject {
-    var data: [Cell] { get }
+    func getItemForIndexPath(indexPath: IndexPath) -> News
+    func fetchDataFromApi()
 }
 
 class CollectionInteractor {
 
     // MARK: Properties
     weak var presenter: CollectionInteractorToPresenterProtocol!
-
+    private let networkNewsManager: NetworkNewsManager
+    
+    private var news: [News] = []
+    
+    init() {
+        networkNewsManager = NetworkNewsManager()
+    }
 }
 
 // MARK: CollectionPresenterToInteractorProtocol
 extension CollectionInteractor: CollectionPresenterToInteractorProtocol {
-    var data: [Cell] {
-        var data: [Cell] = []
-        for item in 1...100 {
-            let cell = Cell(title: "\(item)")
-            data.append(cell)
+    
+    func fetchDataFromApi() {
+        networkNewsManager.sendRequest { [weak self] news in
+            self?.news = news
+            self?.presenter.didFinishFetchDataFromApi(data: news)
         }
-        
-//        let data: [Cell] = [
-//            Cell(title: "1"), Cell(title: "2"), Cell(title: "3"), Cell(title: "4"), Cell(title: "5"), Cell(title: "6")
-//        ]
-        return data
+    }
+    
+    func getItemForIndexPath(indexPath: IndexPath) -> News {
+        return news[indexPath.row]
     }
 }
