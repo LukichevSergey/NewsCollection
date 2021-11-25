@@ -30,11 +30,11 @@ class CollectionInteractor {
 // MARK: CollectionPresenterToInteractorProtocol
 extension CollectionInteractor: CollectionPresenterToInteractorProtocol {
     
-    func fetchDataFromApi() {
-        networkNewsManager.sendRequest { [weak self] news in
+    func fetchDataFromApi() {        
+        networkNewsManager.sendRequest(apiAndPoint: ApiEndPoint.mainPage, completion: { [weak self] news in
             self?.news = news
             self?.presenter.didFinishFetchDataFromApi(data: news)
-        }
+        })
     }
     
     func getItemForIndexPath(indexPath: IndexPath) -> News {

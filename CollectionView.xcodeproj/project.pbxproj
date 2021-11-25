@@ -25,6 +25,7 @@
 		87302DC6274CB0DD00050168 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87302DC5274CB0DD00050168 /* Cell.swift */; };
 		87310A15274F69CB001CCCEF /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87310A14274F69CB001CCCEF /* CustomNavigationController.swift */; };
 		87310A17274F92D0001CCCEF /* CustomNavigationControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87310A16274F92D0001CCCEF /* CustomNavigationControllerDelegate.swift */; };
+		87310A19274F9CA5001CCCEF /* ApiEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87310A18274F9CA5001CCCEF /* ApiEndPoint.swift */; };
 		8787DAB6274DF5DD004DE4F8 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 8787DAB5274DF5DD004DE4F8 /* Kingfisher */; };
 		8787DAB9274DF62D004DE4F8 /* UIImageView + extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8787DAB8274DF62D004DE4F8 /* UIImageView + extensions.swift */; };
 		8787DAC0274E0AA8004DE4F8 /* CollectionItemPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8787DABB274E0AA8004DE4F8 /* CollectionItemPresenter.swift */; };
@@ -53,6 +54,7 @@
 		87302DC5274CB0DD00050168 /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
 		87310A14274F69CB001CCCEF /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
 		87310A16274F92D0001CCCEF /* CustomNavigationControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationControllerDelegate.swift; sourceTree = "<group>"; };
+		87310A18274F9CA5001CCCEF /* ApiEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiEndPoint.swift; sourceTree = "<group>"; };
 		8787DAB8274DF62D004DE4F8 /* UIImageView + extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView + extensions.swift"; sourceTree = "<group>"; };
 		8787DABB274E0AA8004DE4F8 /* CollectionItemPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionItemPresenter.swift; sourceTree = "<group>"; };
 		8787DABC274E0AA8004DE4F8 /* CollectionItemRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionItemRouter.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				872BF33E274CD332000519A4 /* NetworkNewsManager.swift */,
+				87310A18274F9CA5001CCCEF /* ApiEndPoint.swift */,
 			);
 			path = NetworkManager;
 			sourceTree = "<group>";
@@ -287,6 +290,7 @@
 				8787DAC3274E0AA8004DE4F8 /* CollectionItemInteractor.swift in Sources */,
 				8787DAC1274E0AA8004DE4F8 /* CollectionItemRouter.swift in Sources */,
 				8787DAC0274E0AA8004DE4F8 /* CollectionItemPresenter.swift in Sources */,
+				87310A19274F9CA5001CCCEF /* ApiEndPoint.swift in Sources */,
 				87302DC6274CB0DD00050168 /* Cell.swift in Sources */,
 				87302DBB274C94CD00050168 /* CollectionConfigurator.swift in Sources */,
 				87310A15274F69CB001CCCEF /* CustomNavigationController.swift in Sources */,
