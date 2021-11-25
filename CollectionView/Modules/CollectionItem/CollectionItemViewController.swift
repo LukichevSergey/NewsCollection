@@ -25,6 +25,12 @@ class CollectionItemViewController: UIViewController {
     // MARK: - Property
     var presenter: CollectionItemViewToPresenterProtocol!
     
+    private lazy var customController: CustomNavigationController = {
+        let customController = CustomNavigationController(title: "Заголовок статьи", backButton: true)
+        customController.delegate = self
+        return customController
+    }()
+    
     private lazy var newsImage: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -69,14 +75,6 @@ class CollectionItemViewController: UIViewController {
         return label
     }()
     
-    private lazy var backButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Назад", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        button.addTarget(self, action: #selector(backButtonSubmit), for: .touchUpInside)
-        return button
-    }()
-    
     // MARK: - init
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -97,6 +95,13 @@ class CollectionItemViewController: UIViewController {
         presenter.viewDidLoad()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if let title = newsTitle.text {
+            customController.setTitle(title: title)
+        }
+    }
+    
     // MARK: - private func
     private func commonInit() {
 
@@ -105,10 +110,11 @@ class CollectionItemViewController: UIViewController {
     private func configureUI() {
         self.view.backgroundColor = .white
         
-        self.view.addSubview(backButton)
-        backButton.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide)
-            make.left.equalTo(view.safeAreaLayoutGuide).inset(15)
+        self.view.addSubview(customController)
+        customController.snp.makeConstraints { make in
+            make.left.top.right.equalToSuperview()
+            make.width.equalToSuperview()
+            make.height.equalTo(70)
         }
         
         self.view.addSubview(newsImage)
@@ -116,7 +122,7 @@ class CollectionItemViewController: UIViewController {
             make.width.equalTo(view.safeAreaLayoutGuide).inset(10)
             make.height.equalTo(newsImage.snp.width).multipliedBy(0.56)
             make.centerX.equalTo(view.safeAreaLayoutGuide.snp.centerX)
-            make.top.equalTo(backButton.snp.bottom)
+            make.top.equalTo(customController.snp.bottom).inset(-10)
         }
         
         self.view.addSubview(newsTitle)
@@ -143,19 +149,18 @@ class CollectionItemViewController: UIViewController {
             make.left.right.equalTo(newsImage)
         }
     }
-    
-    @objc private func backButtonSubmit() {
-        presenter.clickBackButton()
-    }
 }
 
 // MARK: CollectionItemPresenterToViewProtocol 
 extension CollectionItemViewController: CollectionItemPresenterToViewProtocol{
     func loadNewsData(data: News) {
-        print(data)
         if let newsImageUrl = data.image {
             self.newsImage.setImage(imageUrl: newsImageUrl)
         }
+        
+//        if let title = data.title {
+//            self.customController.setTitle(title: title)
+//        }
         
         self.newsAutor.text = data.author
         self.newsDate.text = data.publishedAt
@@ -176,5 +181,11 @@ extension CollectionItemViewController: CollectionItemRouterToViewProtocol{
     
     func popView() {
         navigationController?.popViewController(animated: true)
+    }
+}
+
+extension CollectionItemViewController: CustomNavigationControllerDelegate {
+    func goToPreviousController() {
+        presenter.clickBackButton()
     }
 }

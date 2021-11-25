@@ -23,6 +23,8 @@
 		87302DC1274CA78700050168 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 87302DC0274CA78700050168 /* SnapKit */; };
 		87302DC4274CB02700050168 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87302DC3274CB02700050168 /* Section.swift */; };
 		87302DC6274CB0DD00050168 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87302DC5274CB0DD00050168 /* Cell.swift */; };
+		87310A15274F69CB001CCCEF /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87310A14274F69CB001CCCEF /* CustomNavigationController.swift */; };
+		87310A17274F92D0001CCCEF /* CustomNavigationControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87310A16274F92D0001CCCEF /* CustomNavigationControllerDelegate.swift */; };
 		8787DAB6274DF5DD004DE4F8 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 8787DAB5274DF5DD004DE4F8 /* Kingfisher */; };
 		8787DAB9274DF62D004DE4F8 /* UIImageView + extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8787DAB8274DF62D004DE4F8 /* UIImageView + extensions.swift */; };
 		8787DAC0274E0AA8004DE4F8 /* CollectionItemPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8787DABB274E0AA8004DE4F8 /* CollectionItemPresenter.swift */; };
@@ -49,6 +51,8 @@
 		87302DBD274CA65700050168 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		87302DC3274CB02700050168 /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		87302DC5274CB0DD00050168 /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
+		87310A14274F69CB001CCCEF /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
+		87310A16274F92D0001CCCEF /* CustomNavigationControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationControllerDelegate.swift; sourceTree = "<group>"; };
 		8787DAB8274DF62D004DE4F8 /* UIImageView + extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView + extensions.swift"; sourceTree = "<group>"; };
 		8787DABB274E0AA8004DE4F8 /* CollectionItemPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionItemPresenter.swift; sourceTree = "<group>"; };
 		8787DABC274E0AA8004DE4F8 /* CollectionItemRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionItemRouter.swift; sourceTree = "<group>"; };
@@ -98,6 +102,7 @@
 		87302D9A274C93D500050168 /* CollectionView */ = {
 			isa = PBXGroup;
 			children = (
+				87310A13274F69AD001CCCEF /* Components */,
 				8787DAB7274DF608004DE4F8 /* Extensions */,
 				872BF33D274CD308000519A4 /* NetworkManager */,
 				87302DB0274C949D00050168 /* Modules */,
@@ -157,6 +162,15 @@
 				87302DC5274CB0DD00050168 /* Cell.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		87310A13274F69AD001CCCEF /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				87310A14274F69CB001CCCEF /* CustomNavigationController.swift */,
+				87310A16274F92D0001CCCEF /* CustomNavigationControllerDelegate.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		8787DAB7274DF608004DE4F8 /* Extensions */ = {
@@ -268,12 +282,14 @@
 				87302DBA274C94CD00050168 /* CollectionInteractor.swift in Sources */,
 				872BF33F274CD332000519A4 /* NetworkNewsManager.swift in Sources */,
 				87302D9C274C93D500050168 /* AppDelegate.swift in Sources */,
+				87310A17274F92D0001CCCEF /* CustomNavigationControllerDelegate.swift in Sources */,
 				87302DB8274C94CD00050168 /* CollectionRouter.swift in Sources */,
 				8787DAC3274E0AA8004DE4F8 /* CollectionItemInteractor.swift in Sources */,
 				8787DAC1274E0AA8004DE4F8 /* CollectionItemRouter.swift in Sources */,
 				8787DAC0274E0AA8004DE4F8 /* CollectionItemPresenter.swift in Sources */,
 				87302DC6274CB0DD00050168 /* Cell.swift in Sources */,
 				87302DBB274C94CD00050168 /* CollectionConfigurator.swift in Sources */,
+				87310A15274F69CB001CCCEF /* CustomNavigationController.swift in Sources */,
 				872BF343274CD617000519A4 /* News.swift in Sources */,
 				8787DAC4274E0AA8004DE4F8 /* CollectionItemConfigurator.swift in Sources */,
 				87302D9E274C93D500050168 /* SceneDelegate.swift in Sources */,

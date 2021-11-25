@@ -25,6 +25,11 @@ class CollectionViewController: UIViewController {
     // MARK: - Property
     var presenter: CollectionViewToPresenterProtocol!
     
+    private lazy var customController: CustomNavigationController = {
+        let customController = CustomNavigationController(title: "News From Newsapi.org", backButton: false)
+        return customController
+    }()
+    
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
@@ -61,6 +66,8 @@ class CollectionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+
+
         configureUI()
         presenter.viewDidLoad()
     }
@@ -72,9 +79,18 @@ class CollectionViewController: UIViewController {
 
     private func configureUI() {
         self.view.backgroundColor = .white
+        
+        self.view.addSubview(customController)
+        customController.snp.makeConstraints { make in
+            make.left.top.right.equalToSuperview()
+            make.width.equalToSuperview()
+            make.height.equalTo(70)
+        }
+        
         self.view.addSubview(collectionView)
         collectionView.snp.makeConstraints { make in
-            make.left.right.top.bottom.equalTo(view.safeAreaLayoutGuide)
+            make.left.right.bottom.equalTo(view.safeAreaLayoutGuide)
+            make.top.equalTo(customController.snp.bottom)
         }
     }
 }

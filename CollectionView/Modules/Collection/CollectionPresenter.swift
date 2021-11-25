@@ -35,8 +35,6 @@ extension CollectionPresenter: CollectionViewToPresenterProtocol {
     }
     
     func clickOnItem(indexPath: IndexPath) {
-        print(indexPath)
-        
         router.navigateToItemViewController(item: interactor.getItemForIndexPath(indexPath: indexPath))
     }
 }
