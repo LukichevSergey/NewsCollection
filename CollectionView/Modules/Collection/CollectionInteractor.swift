@@ -22,6 +22,14 @@ class CollectionInteractor {
     
     private var news: [News] = []
     
+    private let paramsForQuery: [String : String] = [
+        "q" : "apple",
+        "from" : "2021-11-22",
+        "to" : "2021-11-22",
+        "sortBy" : "popularity",
+        "apiKey" : "85d0c7d63eac47fe944f2e7603eb8f6e"
+    ]
+    
     init() {
         networkNewsManager = NetworkNewsManager()
     }
@@ -31,7 +39,7 @@ class CollectionInteractor {
 extension CollectionInteractor: CollectionPresenterToInteractorProtocol {
     
     func fetchDataFromApi() {        
-        networkNewsManager.sendRequest(apiAndPoint: ApiEndPoint.mainPage, completion: { [weak self] news in
+        networkNewsManager.sendRequest(apiAndPoint: .mainPage(params: paramsForQuery), completion: { [weak self] news in
             self?.news = news
             self?.presenter.didFinishFetchDataFromApi(data: news)
         })

@@ -90,15 +90,30 @@ class CollectionItemViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        swipesObservers()
         configureUI()
         presenter.viewDidLoad()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        if let title = newsTitle.text {
-            customController.setTitle(title: title)
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//        if let title = newsTitle.text {
+//            customController.setTitle(title: title)
+//        }
+//    }
+    
+    private func swipesObservers() {
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes))
+        swipeRight.direction = .right
+        self.view.addGestureRecognizer(swipeRight)
+    }
+    
+    @objc func handleSwipes(gester: UISwipeGestureRecognizer) {
+        switch gester.direction {
+        case .right:
+            presenter.clickBackButton()
+        default:
+            break
         }
     }
     
@@ -158,9 +173,9 @@ extension CollectionItemViewController: CollectionItemPresenterToViewProtocol{
             self.newsImage.setImage(imageUrl: newsImageUrl)
         }
         
-//        if let title = data.title {
-//            self.customController.setTitle(title: title)
-//        }
+        if let title = data.title {
+            self.customController.setTitle(title: title)
+        }
         
         self.newsAutor.text = data.author
         self.newsDate.text = data.publishedAt

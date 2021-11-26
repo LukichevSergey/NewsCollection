@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 
 public enum ApiEndPoint {
-    case mainPage
+    case mainPage(params: [String : String])
 }
 
 extension ApiEndPoint {
@@ -31,12 +31,10 @@ extension ApiEndPoint {
         var items: [URLQueryItem] = []
         
         switch self {
-        case .mainPage:
-            items.append(URLQueryItem(name: "q", value: "apple"))
-            items.append(URLQueryItem(name: "from", value: "2021-11-22"))
-            items.append(URLQueryItem(name: "to", value: "2021-11-22"))
-            items.append(URLQueryItem(name: "sortBy", value: "popularity"))
-            items.append(URLQueryItem(name: "apiKey", value: "85d0c7d63eac47fe944f2e7603eb8f6e"))
+        case let .mainPage(params):
+            params.forEach {
+                items.append(URLQueryItem(name: $0, value: $1))
+            }
         }
         
         return items

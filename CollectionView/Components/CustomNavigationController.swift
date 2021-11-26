@@ -11,8 +11,12 @@ import SnapKit
 
 class CustomNavigationController: UIView {
     
-    private var title: String?
-    private var backButton: Bool?
+    private var title: String = "" {
+        didSet{
+            newsTitle.text = title
+        }
+    }
+    private var backButton: Bool = false
     
     weak var delegate: CustomNavigationControllerDelegate?
     
@@ -20,7 +24,7 @@ class CustomNavigationController: UIView {
         let label = UILabel()
         label.text = self.title
         label.adjustsFontSizeToFitWidth = true
-        label.font = .systemFont(ofSize: 15)
+        label.font = .systemFont(ofSize: 20)
         label.numberOfLines = 0
         label.textAlignment = .center
         label.textColor = .black
@@ -36,7 +40,7 @@ class CustomNavigationController: UIView {
         return button
     }()
     
-    init(title: String?, backButton: Bool?){
+    init(title: String = "", backButton: Bool = false){
         super.init(frame: .zero)
         
         self.title = title

@@ -26,7 +26,7 @@ class CollectionViewController: UIViewController {
     var presenter: CollectionViewToPresenterProtocol!
     
     private lazy var customController: CustomNavigationController = {
-        let customController = CustomNavigationController(title: "News From Newsapi.org", backButton: false)
+        let customController = CustomNavigationController(title: "News From Newsapi.org", backButton: true)
         return customController
     }()
     
@@ -66,8 +66,6 @@ class CollectionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-
-
         configureUI()
         presenter.viewDidLoad()
     }
@@ -82,7 +80,8 @@ class CollectionViewController: UIViewController {
         
         self.view.addSubview(customController)
         customController.snp.makeConstraints { make in
-            make.left.top.right.equalToSuperview()
+            make.left.right.equalToSuperview()
+            make.top.equalTo(view.safeAreaLayoutGuide)
             make.width.equalToSuperview()
             make.height.equalTo(70)
         }

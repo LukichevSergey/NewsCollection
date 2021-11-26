@@ -31,7 +31,7 @@ class CollectionPresenter {
 extension CollectionPresenter: CollectionViewToPresenterProtocol {
     
     func viewDidLoad() {
-        interactor.fetchDataFromApi()
+//        interactor.fetchDataFromApi()
     }
     
     func clickOnItem(indexPath: IndexPath) {
