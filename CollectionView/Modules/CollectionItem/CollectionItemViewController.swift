@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 // MARK: CollectionItemPresenterToViewProtocol (Presenter -> View)
 protocol CollectionItemPresenterToViewProtocol: AnyObject {
@@ -26,9 +27,18 @@ class CollectionItemViewController: UIViewController {
     var presenter: CollectionItemViewToPresenterProtocol!
     
     private lazy var customController: CustomNavigationController = {
-        let customController = CustomNavigationController(title: "Заголовок статьи", backButton: true)
+        let customController = CustomNavigationController(title: "Заголовок статьи", backButton: backNewsButton)
         customController.delegate = self
+        
         return customController
+    }()
+    
+    private lazy var backNewsButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("<", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 25)
+        return button
     }()
     
     private lazy var newsImage: UIImageView = {
@@ -95,13 +105,6 @@ class CollectionItemViewController: UIViewController {
         presenter.viewDidLoad()
     }
     
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(animated)
-//        if let title = newsTitle.text {
-//            customController.setTitle(title: title)
-//        }
-//    }
-    
     private func swipesObservers() {
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes))
         swipeRight.direction = .right
@@ -127,7 +130,8 @@ class CollectionItemViewController: UIViewController {
         
         self.view.addSubview(customController)
         customController.snp.makeConstraints { make in
-            make.left.top.right.equalToSuperview()
+            make.left.right.equalToSuperview()
+            make.top.equalTo(view.safeAreaLayoutGuide)
             make.width.equalToSuperview()
             make.height.equalTo(70)
         }

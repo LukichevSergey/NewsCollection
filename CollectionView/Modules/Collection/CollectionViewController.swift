@@ -26,7 +26,7 @@ class CollectionViewController: UIViewController {
     var presenter: CollectionViewToPresenterProtocol!
     
     private lazy var customController: CustomNavigationController = {
-        let customController = CustomNavigationController(title: "News From Newsapi.org", backButton: true)
+        let customController = CustomNavigationController(title: "News From Newsapi.org")
         return customController
     }()
     

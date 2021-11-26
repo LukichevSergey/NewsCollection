@@ -9,6 +9,10 @@ import Foundation
 import UIKit
 import SnapKit
 
+protocol CustomNavigationControllerDelegate: AnyObject {
+    func goToPreviousController()
+}
+
 class CustomNavigationController: UIView {
     
     private var title: String = "" {
@@ -16,7 +20,6 @@ class CustomNavigationController: UIView {
             newsTitle.text = title
         }
     }
-    private var backButton: Bool = false
     
     weak var delegate: CustomNavigationControllerDelegate?
     
@@ -31,20 +34,20 @@ class CustomNavigationController: UIView {
         return label
     }()
     
-    private lazy var backNewsButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("<", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 25)
-        button.addTarget(self, action: #selector(pressToButton), for: .touchUpInside)
-        return button
-    }()
-    
-    init(title: String = "", backButton: Bool = false){
+    init(title: String = "", backButton: UIButton? = nil){
         super.init(frame: .zero)
         
         self.title = title
-        self.backButton = backButton
+        
+        if let backButton = backButton {
+            backButton.addTarget(self, action: #selector(pressToButton), for: .touchUpInside)
+            self.addSubview(backButton)
+            backButton.snp.makeConstraints { make in
+                make.left.equalTo(self.snp.left).inset(10)
+                make.centerY.equalTo(self.snp.centerY)
+            }
+        }
+        
         commonInit()
     }
     
@@ -63,18 +66,10 @@ class CustomNavigationController: UIView {
         
         self.addSubview(newsTitle)
         newsTitle.snp.makeConstraints { make in
-            make.bottom.equalTo(self).inset(5)
             make.centerX.equalTo(self.snp.centerX)
+            make.centerY.equalTo(self.snp.centerY)
             make.left.greaterThanOrEqualTo(self.snp.left).inset(50)
             make.right.greaterThanOrEqualTo(self.snp.right).inset(50)
-        }
-        
-        if backButton == true {
-            self.addSubview(backNewsButton)
-            backNewsButton.snp.makeConstraints { make in
-                make.left.equalTo(self.snp.left).inset(10)
-                make.bottom.equalTo(self).inset(-5)
-            }
         }
     }
     
