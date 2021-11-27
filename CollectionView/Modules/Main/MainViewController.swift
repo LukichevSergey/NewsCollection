@@ -25,6 +25,8 @@ class MainViewController: UIViewController {
     // MARK: - Property
     var presenter: MainViewToPresenterProtocol!
     
+    private var dateFormatter: DateFormatter!
+    
     private lazy var customController: CustomNavigationController = {
         let customController = CustomNavigationController(title: "News From Newsapi.org")
         
@@ -81,10 +83,6 @@ class MainViewController: UIViewController {
     private lazy var labelFromSearchInput: UILabel = createTextLabel(text: "Введите фразу для поиска:")
     
     @objc private func donePressed() {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .none
-        dateFormatter.dateFormat = "yyyy-MM-dd"
         if dateFromInput.isEditing {
             dateFromInput.text = dateFormatter.string(from: datePicker.date)
         } else {
@@ -98,13 +96,9 @@ class MainViewController: UIViewController {
         guard let searchInput = searchInput.text,
               let dateFromInput = dateFromInput.text,
               let dateToInput = dateToInput.text else { return }
-        guard searchInput != "" && dateFromInput != "" && dateToInput != "" else {
-            let alert = UIAlertController(title: "Ошибка", message: "Необходимо заполнить все поля", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "Oк", style: .cancel, handler: nil)
-            alert.addAction(okAction)
-            present(alert, animated: true, completion: nil)
-            return
-        }
+
+        guard validateInputs(searchInput: searchInput, dateFromInput: dateFromInput, dateToInput: dateToInput) else { return }
+        
         inputsData["searchInput"] = searchInput
         inputsData["dateFromInput"] = dateFromInput
         inputsData["dateToInput"] = dateToInput
@@ -126,6 +120,11 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .none
+        dateFormatter.dateFormat = "yyyy-MM-dd"
 
         configureUI()
         presenter.viewDidLoad()
@@ -190,6 +189,30 @@ class MainViewController: UIViewController {
         textLabel.textColor = .black
         textLabel.font = .systemFont(ofSize: 15)
         return textLabel
+    }
+    
+    private func presentAlert(text: String) {
+        let alert = UIAlertController(title: "Ошибка", message: text, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Oк", style: .cancel, handler: nil)
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    private func validateInputs(searchInput: String, dateFromInput: String, dateToInput: String) -> Bool {
+        guard searchInput != "" && dateFromInput != "" && dateToInput != "" else {
+            presentAlert(text: "Необходимо заполнить все поля")
+            return false
+        }
+        if let firstDate = dateFormatter.date(from: dateFromInput),
+           let secondDate = dateFormatter.date(from: dateToInput) {
+            let sr = Calendar.current.compare(firstDate, to: secondDate, toGranularity: .day)
+            if sr == .orderedDescending {
+                presentAlert(text: "Не верно заполнена дата")
+                return false
+            }
+            return true
+        }
+        return false
     }
 }
 
