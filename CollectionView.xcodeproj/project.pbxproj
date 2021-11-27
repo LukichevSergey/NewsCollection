@@ -32,6 +32,11 @@
 		8787DAC2274E0AA8004DE4F8 /* CollectionItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8787DABD274E0AA8004DE4F8 /* CollectionItemViewController.swift */; };
 		8787DAC3274E0AA8004DE4F8 /* CollectionItemInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8787DABE274E0AA8004DE4F8 /* CollectionItemInteractor.swift */; };
 		8787DAC4274E0AA8004DE4F8 /* CollectionItemConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8787DABF274E0AA8004DE4F8 /* CollectionItemConfigurator.swift */; };
+		87C30B842751DE8F000D7E9A /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C30B7F2751DE8F000D7E9A /* MainPresenter.swift */; };
+		87C30B852751DE8F000D7E9A /* MainRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C30B802751DE8F000D7E9A /* MainRouter.swift */; };
+		87C30B862751DE8F000D7E9A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C30B812751DE8F000D7E9A /* MainViewController.swift */; };
+		87C30B872751DE8F000D7E9A /* MainInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C30B822751DE8F000D7E9A /* MainInteractor.swift */; };
+		87C30B882751DE8F000D7E9A /* MainConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C30B832751DE8F000D7E9A /* MainConfigurator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +64,11 @@
 		8787DABD274E0AA8004DE4F8 /* CollectionItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionItemViewController.swift; sourceTree = "<group>"; };
 		8787DABE274E0AA8004DE4F8 /* CollectionItemInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionItemInteractor.swift; sourceTree = "<group>"; };
 		8787DABF274E0AA8004DE4F8 /* CollectionItemConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionItemConfigurator.swift; sourceTree = "<group>"; };
+		87C30B7F2751DE8F000D7E9A /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
+		87C30B802751DE8F000D7E9A /* MainRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRouter.swift; sourceTree = "<group>"; };
+		87C30B812751DE8F000D7E9A /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		87C30B822751DE8F000D7E9A /* MainInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainInteractor.swift; sourceTree = "<group>"; };
+		87C30B832751DE8F000D7E9A /* MainConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainConfigurator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +137,7 @@
 		87302DB0274C949D00050168 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				87C30B7E2751DE7C000D7E9A /* Main */,
 				8787DABA274E09FB004DE4F8 /* CollectionItem */,
 				87302DB1274C94B200050168 /* Collection */,
 			);
@@ -191,6 +202,18 @@
 				8787DABF274E0AA8004DE4F8 /* CollectionItemConfigurator.swift */,
 			);
 			path = CollectionItem;
+			sourceTree = "<group>";
+		};
+		87C30B7E2751DE7C000D7E9A /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				87C30B812751DE8F000D7E9A /* MainViewController.swift */,
+				87C30B7F2751DE8F000D7E9A /* MainPresenter.swift */,
+				87C30B802751DE8F000D7E9A /* MainRouter.swift */,
+				87C30B822751DE8F000D7E9A /* MainInteractor.swift */,
+				87C30B832751DE8F000D7E9A /* MainConfigurator.swift */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -274,6 +297,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8787DAB9274DF62D004DE4F8 /* UIImageView + extensions.swift in Sources */,
+				87C30B862751DE8F000D7E9A /* MainViewController.swift in Sources */,
 				87302DC4274CB02700050168 /* Section.swift in Sources */,
 				87302DB9274C94CD00050168 /* CollectionViewController.swift in Sources */,
 				8787DAC2274E0AA8004DE4F8 /* CollectionItemViewController.swift in Sources */,
@@ -282,6 +306,7 @@
 				87302DBA274C94CD00050168 /* CollectionInteractor.swift in Sources */,
 				872BF33F274CD332000519A4 /* NetworkNewsManager.swift in Sources */,
 				87302D9C274C93D500050168 /* AppDelegate.swift in Sources */,
+				87C30B852751DE8F000D7E9A /* MainRouter.swift in Sources */,
 				87302DB8274C94CD00050168 /* CollectionRouter.swift in Sources */,
 				8787DAC3274E0AA8004DE4F8 /* CollectionItemInteractor.swift in Sources */,
 				8787DAC1274E0AA8004DE4F8 /* CollectionItemRouter.swift in Sources */,
@@ -290,9 +315,12 @@
 				87302DC6274CB0DD00050168 /* Cell.swift in Sources */,
 				87302DBB274C94CD00050168 /* CollectionConfigurator.swift in Sources */,
 				87310A15274F69CB001CCCEF /* CustomNavigationController.swift in Sources */,
+				87C30B882751DE8F000D7E9A /* MainConfigurator.swift in Sources */,
 				872BF343274CD617000519A4 /* News.swift in Sources */,
 				8787DAC4274E0AA8004DE4F8 /* CollectionItemConfigurator.swift in Sources */,
+				87C30B842751DE8F000D7E9A /* MainPresenter.swift in Sources */,
 				87302D9E274C93D500050168 /* SceneDelegate.swift in Sources */,
+				87C30B872751DE8F000D7E9A /* MainInteractor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

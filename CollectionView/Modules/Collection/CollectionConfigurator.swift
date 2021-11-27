@@ -9,11 +9,11 @@
 import UIKit
 
 class CollectionConfigurator {
-    func configure() -> UIViewController {
+    func configure(inputsData: [String : String]) -> UIViewController {
         let view = CollectionViewController()
         let presenter = CollectionPresenter()
         let router = CollectionRouter()
-        let interactor = CollectionInteractor()
+        let interactor = CollectionInteractor(inputsData: inputsData)
         
         view.presenter = presenter
         presenter.router = router

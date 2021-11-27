@@ -22,16 +22,19 @@ class CollectionInteractor {
     
     private var news: [News] = []
     
-    private let paramsForQuery: [String : String] = [
-        "q" : "apple",
-        "from" : "2021-11-22",
-        "to" : "2021-11-22",
+    private var paramsForQuery: [String : String] = [
+        "q" : "",
+        "from" : "",
+        "to" : "",
         "sortBy" : "popularity",
         "apiKey" : "85d0c7d63eac47fe944f2e7603eb8f6e"
     ]
     
-    init() {
+    init(inputsData: [String : String]) {
         networkNewsManager = NetworkNewsManager()
+        paramsForQuery["q"] = inputsData["searchInput"]
+        paramsForQuery["from"] = inputsData["dateFromInput"]
+        paramsForQuery["to"] = inputsData["dateToInput"]
     }
 }
 

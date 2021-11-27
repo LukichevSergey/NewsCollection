@@ -16,7 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let windowsScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowsScene)
             
-            let controller = CollectionConfigurator().configure()
+            let controller = MainConfigurator().configure()
             let navigationViewController = UINavigationController()
             navigationViewController.navigationBar.isHidden = true
             navigationViewController.viewControllers = [controller]
