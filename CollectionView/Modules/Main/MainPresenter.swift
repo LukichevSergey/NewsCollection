@@ -24,7 +24,6 @@ class MainPresenter {
     // MARK: Properties
     var router: MainPresenterToRouterProtocol!
     var interactor: MainPresenterToInteractorProtocol!
-    weak var view: MainPresenterToViewProtocol!
 }
 
 // MARK: MainViewToPresenterProtocol

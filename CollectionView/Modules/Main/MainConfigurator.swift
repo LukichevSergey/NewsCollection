@@ -18,7 +18,6 @@ class MainConfigurator {
         view.presenter = presenter
         presenter.router = router
         presenter.interactor = interactor
-        presenter.view = view
         interactor.presenter = presenter
         router.view = view
         

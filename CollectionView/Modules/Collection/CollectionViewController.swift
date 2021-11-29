@@ -80,10 +80,9 @@ class CollectionViewController: UIViewController {
         
         self.view.addSubview(customController)
         customController.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
-            make.top.equalTo(view.safeAreaLayoutGuide)
+            make.left.top.right.equalToSuperview()
             make.width.equalToSuperview()
-            make.height.equalTo(70)
+            make.height.equalTo(100)
         }
         
         self.view.addSubview(collectionView)

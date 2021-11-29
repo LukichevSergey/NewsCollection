@@ -9,11 +9,6 @@
 import UIKit
 import SnapKit
 
-// MARK: MainPresenterToViewProtocol (Presenter -> View)
-protocol MainPresenterToViewProtocol: AnyObject {
-
-}
-
 // MARK: MainRouterToViewProtocol (Router -> View)
 protocol MainRouterToViewProtocol: AnyObject {
     func presentView(view: UIViewController)
@@ -31,14 +26,6 @@ class MainViewController: UIViewController {
         let customController = CustomNavigationController(title: "News From Newsapi.org")
         
         return customController
-    }()
-    
-    private lazy var backNewsButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("<", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 25)
-        return button
     }()
     
     private lazy var stackView: UIStackView = {
@@ -108,14 +95,10 @@ class MainViewController: UIViewController {
     // MARK: - init
     init() {
         super.init(nibName: nil, bundle: nil)
-
-        commonInit()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        
-        commonInit()
     }
     
     override func viewDidLoad() {
@@ -131,19 +114,15 @@ class MainViewController: UIViewController {
     }
     
     // MARK: - private func
-    private func commonInit() {
-
-    }
 
     private func configureUI() {
         self.view.backgroundColor = .white
         
         self.view.addSubview(customController)
         customController.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
-            make.top.equalTo(view.safeAreaLayoutGuide)
+            make.left.top.right.equalToSuperview()
             make.width.equalToSuperview()
-            make.height.equalTo(70)
+            make.height.equalTo(100)
         }
         
         self.view.addSubview(stackView)
@@ -214,11 +193,6 @@ class MainViewController: UIViewController {
         }
         return false
     }
-}
-
-// MARK: MainPresenterToViewProtocol 
-extension MainViewController: MainPresenterToViewProtocol{
-    
 }
 
 // MARK: MainRouterToViewProtocol

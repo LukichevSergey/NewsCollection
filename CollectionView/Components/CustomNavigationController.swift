@@ -28,7 +28,7 @@ class CustomNavigationController: UIView {
         label.text = self.title
         label.adjustsFontSizeToFitWidth = true
         label.font = .systemFont(ofSize: 20)
-        label.numberOfLines = 0
+        label.numberOfLines = 2
         label.textAlignment = .center
         label.textColor = .black
         return label
@@ -44,7 +44,7 @@ class CustomNavigationController: UIView {
             self.addSubview(backButton)
             backButton.snp.makeConstraints { make in
                 make.left.equalTo(self.snp.left).inset(10)
-                make.centerY.equalTo(self.snp.centerY)
+                make.bottom.equalTo(self).inset(10)
             }
         }
         
@@ -67,7 +67,7 @@ class CustomNavigationController: UIView {
         self.addSubview(newsTitle)
         newsTitle.snp.makeConstraints { make in
             make.centerX.equalTo(self.snp.centerX)
-            make.centerY.equalTo(self.snp.centerY)
+            make.bottom.equalTo(self).inset(10)
             make.left.greaterThanOrEqualTo(self.snp.left).inset(50)
             make.right.greaterThanOrEqualTo(self.snp.right).inset(50)
         }
